@@ -1,3 +1,6 @@
+using MauiAppMinhasCompras.Model;
+
+
 namespace MauiAppMinhasCompras.Views;
 
 public partial class NovoProduto : ContentPage
@@ -7,15 +10,24 @@ public partial class NovoProduto : ContentPage
 		InitializeComponent();
 	}
 
-	private void ToolbarItem_Clicked(object sender, EventArgs e)
+	private async void ToolbarItem_Clicked(object sender, EventArgs e)
 	{
 		try
 		{
-			Navigation.PushAsync(new Views.ListaProduto());
+			Produto p = new Produto
+			{
+				Descricao = txt_descricao.Text,
+				Quantidade = Convert.ToDouble(txt_quantidade.Text),
+				Preco = Convert.ToDouble(txt_preco.Text)
+			};
+
+            await App.Db.InsertAsync(p);
+			await DisplayAlert("Sucesso", "Produto cadastrado com sucesso!", "OK");
+
 		}
 		catch (Exception ex)
 		{
-			DisplayAlert("Erro", ex.Message, "OK");
+            await DisplayAlert("Erro", ex.Message, "OK");
 		}
 	}
 }

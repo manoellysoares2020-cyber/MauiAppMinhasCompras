@@ -5,7 +5,7 @@
              Title="NovoProduto">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Salvar" Clicked="TooolbarItem_Clicked"/>
+        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked"/>
         </ContentPage.ToolbarItems>
     
     <VerticalStackLayout Spacing="10" Padding="10">

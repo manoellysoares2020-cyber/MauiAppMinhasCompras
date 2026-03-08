@@ -41,5 +41,10 @@ namespace MauiAppMinhasCompras.Helpers
             string sql = "SELECT * Produto WHERE descricao like '%" + q + "%'";
             return _conn.QueryAsync<Produto>(sql);
         }
+
+        internal async Task InsertAsync(Produto p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
