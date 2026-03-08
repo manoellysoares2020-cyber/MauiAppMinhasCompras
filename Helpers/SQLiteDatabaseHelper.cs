@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,9 +42,7 @@ namespace MauiAppMinhasCompras.Helpers
             return _conn.QueryAsync<Produto>(sql);
         }
 
-        internal async Task InsertAsync(Produto p)
-        {
-            throw new NotImplementedException();
+       
         }
     }
-}
+

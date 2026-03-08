@@ -21,7 +21,7 @@ public partial class NovoProduto : ContentPage
 				Preco = Convert.ToDouble(txt_preco.Text)
 			};
 
-            await App.Db.InsertAsync(p);
+            App.Db.Insert(p);
 			await DisplayAlert("Sucesso", "Produto cadastrado com sucesso!", "OK");
 
 		}
