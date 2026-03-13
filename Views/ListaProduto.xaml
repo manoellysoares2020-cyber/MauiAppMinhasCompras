@@ -5,12 +5,15 @@
              Title="Minhas Compras">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Somar"/>
+        <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
+        
     </ContentPage.ToolbarItems> 
     
     <VerticalStackLayout>
-        <SearchBar x:Name="txt_search" Placeholder="Busca por Produtos"/>
+        <SearchBar x:Name="txt_search"
+                   Placeholder="Busca por Produtos"
+                   TextChanged="txt_search_TextChanged" />
         <ListView x:Name="lst_produtos">
             <ListView.Header>
                 <Grid ColumnDefinitions="*, *, *, *, *">
@@ -25,10 +28,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text= "Remover"/>
+                            <MenuItem Text= "Remover" Clicked="MenuItem_Clicked"/>
                         </ViewCell.ContextActions>
                         <Grid ColumnDefinitions="*, *, *, *, *">
-                            <Label Grid.Column="0" Text="{Binding ID}"/>
+                            <Label Grid.Column="0" Text="{Binding Id}"/>
                             <Label Grid.Column="1" Text="{Binding Descricao}"/>
                             <Label Grid.Column="2" Text="{Binding Preco}"/>
                             <Label Grid.Column="3" Text="{Binding Quantidade}"/>
