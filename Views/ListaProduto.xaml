@@ -6,16 +6,23 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
-        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
-        
+        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems> 
     
     <VerticalStackLayout>
+
+        <!-- Barra de busca -->
         <SearchBar x:Name="txt_search"
                    Placeholder="Busca por Produtos"
                    TextChanged="txt_search_TextChanged" />
-        <ListView x:Name="lst_produtos">
+        
+        <!-- lista de produtos -->
+        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected" >
+
+            <!-- cabeçalho da lista -->
             <ListView.Header>
+
+                <!-- grid com 5 colunas -->
                 <Grid ColumnDefinitions="*, *, *, *, *">
                     <Label Grid.Column="0" Text="ID"/>
                     <Label Grid.Column="1" Text="Descrição"/>
@@ -24,12 +31,16 @@
                     <Label Grid.Column="4" Text="Total"/>
                 </Grid>
             </ListView.Header>
+            
+            <!-- template de cada item -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text= "Remover" Clicked="MenuItem_Clicked"/>
-                        </ViewCell.ContextActions>
+                            <MenuItem Text="Excluir" Clicked="MenuItem_Clicked"/>
+                            </ViewCell.ContextActions>
+                        
+                        <!-- layout de cada linha -->
                         <Grid ColumnDefinitions="*, *, *, *, *">
                             <Label Grid.Column="0" Text="{Binding Id}"/>
                             <Label Grid.Column="1" Text="{Binding Descricao}"/>

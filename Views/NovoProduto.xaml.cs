@@ -3,25 +3,28 @@ using MauiAppMinhasCompras.Model;
 
 namespace MauiAppMinhasCompras.Views;
 
-public partial class NovoProduto : ContentPage
+public partial class NovoProduto : ContentPage // tela de cadastro
 {
 	public NovoProduto()
 	{
-		InitializeComponent();
-	}
+		InitializeComponent(); // inicializa o XAML
+    }
 
-	private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    // evento do botão "Salvar"
+    private async void ToolbarItem_Clicked(object sender, EventArgs e)
 	{
 		try
 		{
-			Produto p = new Produto
+
+            // cria um novo produto com os dados digitados
+            Produto p = new Produto
 			{
 				Descricao = txt_descricao.Text,
 				Quantidade = Convert.ToDouble(txt_quantidade.Text),
 				Preco = Convert.ToDouble(txt_preco.Text)
 			};
 
-            App.Db.Insert(p);
+            App.Db.Insert(p); // sala no banco
 			await DisplayAlert("Sucesso", "Produto cadastrado com sucesso!", "OK");
 
 		}
