@@ -7,7 +7,7 @@ using SQLite;
 
 namespace MauiAppMinhasCompras.Model // classe de modelo, representa a estrutura do produto no banco de dados SQLite
 {
-    public class Produto
+    public class Produto 
     {
         string _descricao; // campo privado para a descrição do produto
 
