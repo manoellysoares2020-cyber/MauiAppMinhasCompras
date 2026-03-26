@@ -1,4 +1,5 @@
 ﻿using MauiAppMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MauiAppMinhasCompras
 {
@@ -27,6 +28,8 @@ namespace MauiAppMinhasCompras
         public App()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR"); // define a cultura para português do Brasil
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

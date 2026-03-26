@@ -6,8 +6,18 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
-        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"></ToolbarItem>
-    </ContentPage.ToolbarItems> 
+        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Relatório" Clicked="ToolbarItem_Clicked_2">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter> 
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources> 
     
     <VerticalStackLayout>
 
@@ -15,20 +25,26 @@
         <SearchBar x:Name="txt_search"
                    Placeholder="Busca por Produtos"
                    TextChanged="txt_search_TextChanged" />
+
         
-        <!-- lista de produtos -->
-        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected" >
+            <!-- lista de produtos -->
+        <ListView x:Name="lst_produtos" 
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="lst_produtos_Refreshing"
+                  ItemSelected="lst_produtos_ItemSelected" > 
 
             <!-- cabeçalho da lista -->
             <ListView.Header>
 
                 <!-- grid com 5 colunas -->
-                <Grid ColumnDefinitions="*, *, *, *, *">
-                    <Label Grid.Column="0" Text="ID"/>
-                    <Label Grid.Column="1" Text="Descrição"/>
-                    <Label Grid.Column="2" Text="Preço"/>
-                    <Label Grid.Column="3" Text="Quantidade"/>
-                    <Label Grid.Column="4" Text="Total"/>
+                <Grid ColumnDefinitions="*, *, *, *, *,*"
+                    BackgroundColor="DarkBlue" >
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold"/>
+                    <Label Grid.Column="1" Text="Categoria" FontAttributes="Bold"/>
+                    <Label Grid.Column="2" Text="Descrição" FontAttributes="Bold"/>
+                    <Label Grid.Column="3" Text="Preço" FontAttributes="Bold"/>
+                    <Label Grid.Column="4" Text="Quantidade" FontAttributes="Bold"/>
+                    <Label Grid.Column="5" Text="Total" FontAttributes="Bold"/>
                 </Grid>
             </ListView.Header>
             
@@ -41,16 +57,19 @@
                             </ViewCell.ContextActions>
                         
                         <!-- layout de cada linha -->
-                        <Grid ColumnDefinitions="*, *, *, *, *">
-                            <Label Grid.Column="0" Text="{Binding Id}"/>
-                            <Label Grid.Column="1" Text="{Binding Descricao}"/>
-                            <Label Grid.Column="2" Text="{Binding Preco}"/>
-                            <Label Grid.Column="3" Text="{Binding Quantidade}"/>
-                            <Label Grid.Column="4" Text="{Binding Total}"/>
+                        <Grid ColumnDefinitions="*, *, *, *, *,*"
+                            BackgroundColor="LightSteelBlue">
+                            <Label Grid.Column="0" Text="{Binding Id}"  TextColor="Black"/>
+                            <Label Grid.Column="1" Text="{Binding Categoria}" TextColor="Black"/>
+                            <Label Grid.Column="2" Text="{Binding Descricao}" TextColor="Black"/>
+                            <Label Grid.Column="3" Text="{Binding Preco, StringFormat='{}{0:c}'}"  TextColor="Black"/>
+                            <Label Grid.Column="4" Text="{Binding Quantidade}"  TextColor="Black"/>
+                            <Label Grid.Column="5" Text="{Binding Total, StringFormat='{}{0:c}'}"  TextColor="Black"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
             </ListView>
+   
     </VerticalStackLayout>
 </ContentPage>

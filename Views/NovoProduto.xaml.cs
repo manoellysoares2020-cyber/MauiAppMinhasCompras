@@ -21,11 +21,14 @@ public partial class NovoProduto : ContentPage // tela de cadastro
 			{
 				Descricao = txt_descricao.Text,
 				Quantidade = Convert.ToDouble(txt_quantidade.Text),
-				Preco = Convert.ToDouble(txt_preco.Text)
-			};
+				Preco = Convert.ToDouble(txt_preco.Text),
+				Categoria = txt_categoria.Text
+
+            };
 
             App.Db.Insert(p); // sala no banco
 			await DisplayAlert("Sucesso", "Produto cadastrado com sucesso!", "OK");
+            await Navigation.PopAsync(); // volta para a tela anterior
 
 		}
 		catch (Exception ex)

@@ -13,6 +13,7 @@ namespace MauiAppMinhasCompras.Model // classe de modelo, representa a estrutura
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; } // identificador do produto
+        public string Categoria { get; set; } // categoria do produto
         public string Descricao { get; set;
            /* get => _descricao;
             set

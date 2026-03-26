@@ -37,6 +37,7 @@ namespace MauiAppMinhasCompras.Helpers // classe auxiliar, serve para controlar 
         //deletar produtos
         public Task<int> Delete(int id)
         {
+            
             return _conn.Table<Produto>().DeleteAsync(i => i.Id == id);
         }
 
@@ -47,10 +48,10 @@ namespace MauiAppMinhasCompras.Helpers // classe auxiliar, serve para controlar 
         }
 
         // buscar produtos
-        public Task<List<Produto>> Seanch(string q)
+        public Task<List<Produto>> Searnch(string q)
         {
             string sql = "SELECT * FROM Produto WHERE descricao like '%" + q + "%'";
-            return _conn.QueryAsync<Produto>(sql);
+            return _conn.QueryAsync<Produto>(sql, "%" + q + "%", "%" + q + "%");
         }
 
        

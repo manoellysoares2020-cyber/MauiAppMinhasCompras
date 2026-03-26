@@ -12,6 +12,10 @@
     <!-- layout principal -->
     <VerticalStackLayout Spacing="10" Padding="10">
 
+        <!-- campo categoria -->
+        <Label Text="Categoria: " />
+        <Entry x:Name="txt_categoria"/>
+
         <!-- campo descrição -->
         <Label Text="Descrição do Produto: " />
         <Entry x:Name="txt_descricao"/>

@@ -14,6 +14,25 @@ public partial class ListaProduto : ContentPage
 
         lst_produtos.ItemsSource = lista;
 	}
+    private async void ToolbarItem_Clicked_2(object sender, EventArgs e)
+    {
+        var grupos = lista
+            .GroupBy(p => p.Categoria)
+            .Select(g => new
+            {
+                Categoria = g.Key,
+                Total = g.Sum(p => p.Total)
+            });
+
+        string msg = "";
+
+        foreach (var item in grupos)
+        {
+            msg += $"{item.Categoria}: {item.Total:C}\n";
+        }
+
+        await DisplayAlert("Relatório por Categoria", msg, "OK");
+    }
 
     protected async override void OnAppearing()
 	{
@@ -50,15 +69,21 @@ public partial class ListaProduto : ContentPage
 		{
 			string q = e.NewTextValue; // texto digitado
 
-			lista.Clear(); // limpa a lista atual
+            lst_produtos.IsRefreshing = true;
 
-			List<Produto> tmp = await App.Db.Seanch(q);  // busca no banco
+            lista.Clear(); // limpa a lista atual
+
+			List<Produto> tmp = await App.Db.Searnch(q);  // busca no banco
 
 			tmp.ForEach(i => lista.Add(i)); // mostra resultados
 		}
 		catch (Exception ex)
 		{
 			await DisplayAlert("Erro", ex.Message, "OK"); // mostra uma mensagem "Erro" se acontecer
+		}
+		finally
+		{
+			lst_produtos.IsRefreshing = false;
 		}
 
         }
@@ -102,9 +127,9 @@ public partial class ListaProduto : ContentPage
     {
 		try
 		{
-         Produto p = e.SelectedItem as Produto; // pega o produto selecionado
+            Produto p = e.SelectedItem as Produto; // pega o produto selecionado
 
-			Navigation.PushAsync(new Views.EditarProduto // abre a tela de edição passando o produto
+            Navigation.PushAsync(new Views.EditarProduto // abre a tela de edição passando o produto
 			{
 				BindingContext = p, // mostra os dados do produto na tela de edição
 			});
@@ -113,5 +138,24 @@ public partial class ListaProduto : ContentPage
         {
             DisplayAlert("Erro", ex.Message, "OK");
         }
+    }
+
+	private async void lst_produtos_Refreshing(object sender, EventArgs e)
+	{
+        try
+        {
+            lista.Clear(); // limpa a lista atual
+
+            List<Produto> tmp = await App.Db.GetAll(); 
+
+            tmp.ForEach(i => lista.Add(i)); // mostra resultados
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Erro", ex.Message, "OK"); // mostra uma mensagem "Erro" se acontecer
+        } finally
+		{
+			lst_produtos.IsRefreshing = false;
+		}
     }
 }
