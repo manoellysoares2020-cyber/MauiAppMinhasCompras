@@ -46,7 +46,7 @@
                     <Label Grid.Column="4" Text="Quantidade" FontAttributes="Bold"/>
                     <Label Grid.Column="5" Text="Total" FontAttributes="Bold"/>
                 </Grid>
-            </ListView.Header>
+            </ListView.Header>  
             
             <!-- template de cada item -->
             <ListView.ItemTemplate>

@@ -50,8 +50,9 @@ namespace MauiAppMinhasCompras.Helpers // classe auxiliar, serve para controlar 
         // buscar produtos
         public Task<List<Produto>> Searnch(string q)
         {
-            string sql = "SELECT * FROM Produto WHERE descricao like '%" + q + "%'";
+            string sql = "SELECT * FROM Produto WHERE descricao LIKE ? OR categoria LIKE ?";
             return _conn.QueryAsync<Produto>(sql, "%" + q + "%", "%" + q + "%");
+
         }
 
        
